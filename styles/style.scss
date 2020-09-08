@@ -1,0 +1,499 @@
+@import "reset";
+@import "colors-fonts";
+
+$fontSize: 17px;
+
+@mixin button {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: $coral;
+  padding: .4em 1em .3em 1em;
+  border-radius: 5px;
+  font-size: .9em;
+  display: inline-block;
+}
+@mixin borderTop($borderColor, $borderWidth) {
+  border-top: $borderWidth solid $borderColor;
+}
+@mixin grid {
+  display: grid;
+  align-items: center;
+  grid-gap: 30px;
+}
+@mixin orderC2A {
+  text-align: right;
+  a.button {
+    @include button;
+    margin-left: .3em;
+  }
+  a.button:hover {
+    background: scale-color($coral, $lightness: -20%);
+  }
+}
+@mixin borderDot {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 100%;
+  border: 9px solid $egg;
+  background: $coral;
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -11px;
+  z-index: 50;
+  margin: 0 auto;
+}
+@mixin headBorder {
+  content: '';
+  width: 60%;
+  margin: .2em auto .7em auto;
+  height: 2px;
+  position: relative;
+  display: block;
+  background: $gold;
+}
+
+body {
+  background-color: $egg;
+  color: $black;
+  font: {
+  	size: $fontSize;
+  	family: $sansFont;
+  }
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: $serifFont;
+}
+a {
+  color: $coral;
+  transition: .4s;
+}
+a:hover {
+  color: darken($coral, 10%);
+}
+header, main, #below-main, #above-footer, footer section {
+  padding: 0 5rem;
+}
+@media (max-width: 991px) {
+  header, main, #below-main, #above-footer, footer section {
+    padding: 0 3.5rem;
+  }
+}
+@media (max-width: 549px) {
+  header, main, #below-main, #above-footer, footer section {
+    padding: 0 2rem;
+  }
+}
+
+header {
+  @include grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  background: $berry;
+  color: #fff;
+  padding-top: .6em;
+  padding-bottom: .6em;
+  font: {
+    size: .9em;
+    family: $serifFont;
+  }
+  a {
+    color: #fff;
+    font-weight: 600;
+  }
+  a:hover {
+    color: darken(#fff, 10%);
+  }
+  .order-c2a {
+    @include orderC2A;
+  }
+  p {
+    margin: 0;
+  }
+}
+@media (max-width: 991px) {
+  header {
+    font-size: .72em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  .order-c2a {
+    a.button {
+      font-size: 1em;
+    }
+  }
+}
+@media (max-width:700px) {
+  header {
+    display: block;
+    text-align:center;
+    font-size: .85em;
+    .order-c2a {
+      text-align:center;
+      margin-top: .6em;
+    }
+  }
+}
+@media (max-width:419px) {
+  header {
+    font-size: .8em;
+  }
+}
+
+#hero {
+  position: relative;
+  img {
+    width: 100%;
+    height: 530px;
+    object-fit: cover;
+  }
+  #logo {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-54%);
+    img {
+      max-width:400px;
+      height:auto;
+      object-fit: unset;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .social {
+    position: absolute;
+    bottom: .6em;
+    left: 0;
+    right: 0;
+    text-align: center;
+    a {
+      color: #fff;
+      font-size: 1.6em;
+      margin: 0 .1em;
+    }
+    a:hover {
+      color: transparentize($egg, .2);
+    }
+  }
+}
+
+main {
+  @include grid;
+  grid: {
+    template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 50px;
+  }
+  align-items: start;
+  padding-top: 2.9em;
+  padding-bottom: 2.1em;
+  p {
+    line-height: 1.5em;
+  }
+  h1 {
+    position: relative;
+    text-align: center;
+    color: $berry;
+  }
+  h1:before {
+    @include borderDot;
+  }
+  h1:after {
+    @include headBorder;
+  }
+  aside {
+    img {
+      object-fit: cover;
+    }
+  }
+}
+@media (max-width: 766px) {
+  main.wrapper {
+    grid: {
+      template-columns: minmax(0, 1fr);
+      gap: 24px 0;
+    }
+  }
+}
+@media (max-width: 766px) {
+  main.wrapper {
+    aside {
+      img {
+        height: 260px;
+      }
+    }
+  }
+}
+
+#below-main {
+  background: $berry;
+  padding-top: 1.2em;
+  padding-bottom: 2.1em;
+  color: #fff;
+  h2 {
+    position: relative;
+    text-align: center;
+  }
+  h2:before {
+    @include borderDot;
+    border-color: $berry;
+  }
+  h2:after {
+    @include headBorder;
+    width: 30%;
+  }
+  .menu {
+    > p {
+      text-align: center;
+      line-height: 1.5em;
+    }
+  }
+  .menu-listing {
+    @include grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-gap: 22px 50px;
+    align-items: start;
+    margin-top: 3.2em;
+    color: $egg;
+    p {
+      line-height: 1.5em;
+      font-size: .95em;
+    }
+    p:last {
+      margin-bottom: 0;
+    }
+    h3 {
+      margin-top: 0;
+      color: #fff;
+      margin-bottom: .2em;
+      i {
+        color: $egg;
+        margin-right: 2px;
+      }
+    }
+  }
+}
+@media (max-width: 766px) {
+  #below-main {
+    .menu {
+      > p {
+        font-size: .9em;
+      }
+    }
+  }
+}
+@media (max-width: 549px) {
+  #below-main {
+    .menu-listing {
+      display: block;
+      div {
+        margin-bottom: 1.5em;
+      }
+      div:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+#above-footer {
+  padding-top: 1.5em;
+  padding-bottom: 1em;
+  h2 {
+    position: relative;
+    text-align: center;
+  }
+  h2:before {
+    @include borderDot;
+  }
+  h2:after {
+    @include headBorder;
+    width: 30%;
+  }
+  article {
+    > p {
+      text-align: center;
+    }
+    #reviews {
+      @include grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+      align-items: start;
+      grid-gap: 60px;
+      margin-top: 2.55em;
+      > div {
+        position: relative;
+        padding-left: 2.2em;
+        p {
+          line-height: 1.5em;
+          font-size: .95em;
+          b {
+            font-family: $serifFont;
+            font-size: .8em;
+            color: $black;
+          }
+        }
+        p:last-child {
+          text-align: right;
+        }
+      }
+      > div:before {
+        content: '\f10d';
+        font-family: "Font Awesome 5 Free";
+        font-weight: 600;
+        display: block;
+        font-size: 1.7em;
+        color: transparentize($coral, .3);
+        position: absolute;
+        top: -3px;
+        left: 0;
+      }
+    }
+  }
+}
+@media (max-width: 991px) {
+  #above-footer {
+    article {
+      #reviews {
+        grid-gap: 40px;
+      }
+    }
+  }
+}
+@media (max-width: 766px) {
+  #above-footer {
+    article {
+      #reviews {
+        display: flex;
+        flex-wrap: wrap;
+        grid: {
+          template-columns: none;
+          gap: 10px 40px;
+        }
+        > div {
+          flex: 1 0 36%;
+          padding-left: 7%;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 549px) {
+  #above-footer {
+    article {
+      #reviews {
+        display: block;
+        > div {
+          flex: none;
+          padding-left: 2.2em;
+          margin-bottom: 1em;
+        }
+        > div:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  background: $black;
+  border-top: 2px solid $coral;
+  color: $egg;
+  padding-top: 1.3em;
+  padding-bottom: .6em;
+  a:hover {
+    text-decoration: underline;
+  }
+  section {
+    @include grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    grid-template-areas: "address call";
+    align-items: start;
+    div:last-child {
+      text-align: right;
+    }
+    .address {
+      font-size: .9em;
+      position: relative;
+      padding-left: 1.7em;
+      grid-area: address;
+      p {
+        margin-bottom: 0;
+      }
+    }
+    .address:before {
+      content: '\f3c5';
+      font: {
+        family: "Font Awesome 5 Free";
+        weight: 600;
+        size: 1.5em;
+      }
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      display: block;
+    }
+    .order-c2a {
+      @include orderC2A;
+      grid-area: call;
+      a {
+        color: $gold;
+      }
+      a.button {
+        background: $gold;
+      }
+      a.button:hover {
+        background: scale-color($gold, $lightness: -20%);
+        text-decoration: none;
+      }
+    }
+  }
+  #copyright {
+    text-align: center;
+    font-size: .75em;
+    color: $egg;
+    margin-top: 2em;
+    .social {
+      margin-bottom: .2em;
+      a {
+        color: #fff;
+        margin: 0 .2em;
+        font-size: 1.8em;
+      }
+      a:hover {
+        color: transparentize($egg, .2);
+      }
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+@media (max-width: 766px) {
+  footer {
+    section {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "call" "address";
+      .address {
+        margin: 0 auto .6em auto;
+      }
+      div:last-child, .order-c2a {
+        text-align: center;
+      }
+    }
+  }
+}
+@media (max-width: 766px) {
+  footer {
+    section {
+      .order-c2a {
+        p {
+          line-height: 1.9em;
+        }
+      }
+    }
+  }
+}
