@@ -1,16 +1,20 @@
 @import "reset";
 @import "colors-fonts";
 
+/* variables */
 $fontSize: 17px;
 
+/* mixins */
 @mixin button {
   color: white;
-  font-weight: bold;
+  font: {
+    weight: bold;
+    size: .9em;
+  }
   text-transform: uppercase;
   background: $coral;
   padding: .4em 1em .3em 1em;
   border-radius: 5px;
-  font-size: .9em;
   display: inline-block;
 }
 @mixin borderTop($borderColor, $borderWidth) {
@@ -56,6 +60,7 @@ $fontSize: 17px;
   background: $gold;
 }
 
+/* root styles */
 body {
   background-color: $egg;
   color: $black;
@@ -88,6 +93,7 @@ header, main, #below-main, #above-footer, footer section {
   }
 }
 
+/* header styles */
 header {
   @include grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -143,6 +149,7 @@ header {
   }
 }
 
+/* hero styles */
 #hero {
   position: relative;
   img {
@@ -157,8 +164,8 @@ header {
     right: 0;
     transform: translateY(-54%);
     img {
-      max-width:400px;
-      height:auto;
+      max-width: 400px;
+      height: auto;
       object-fit: unset;
       display: block;
       margin: 0 auto;
@@ -181,6 +188,7 @@ header {
   }
 }
 
+/* main body styles */
 main {
   @include grid;
   grid: {
@@ -188,8 +196,10 @@ main {
     gap: 50px;
   }
   align-items: start;
-  padding-top: 2.9em;
-  padding-bottom: 2.1em;
+  padding: {
+    top: 2.9em;
+    bottom: 2.1em;
+  }
   p {
     line-height: 1.5em;
   }
@@ -228,10 +238,13 @@ main {
   }
 }
 
+/* below main styles */
 #below-main {
   background: $berry;
-  padding-top: 1.2em;
-  padding-bottom: 2.1em;
+  padding: {
+    top: 1.2em;
+    bottom: 2.1em;
+  }
   color: #fff;
   h2 {
     position: relative;
@@ -253,8 +266,10 @@ main {
   }
   .menu-listing {
     @include grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-gap: 22px 50px;
+    grid: {
+      template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 22px 50px;
+    }
     align-items: start;
     margin-top: 3.2em;
     color: $egg;
@@ -266,9 +281,11 @@ main {
       margin-bottom: 0;
     }
     h3 {
-      margin-top: 0;
+      margin: {
+        top: 0;
+        bottom: .2em;
+      }
       color: #fff;
-      margin-bottom: .2em;
       i {
         color: $egg;
         margin-right: 2px;
@@ -299,9 +316,12 @@ main {
   }
 }
 
+/* above footer styles */
 #above-footer {
-  padding-top: 1.5em;
-  padding-bottom: 1em;
+  padding: {
+    top: 1.5em;
+    bottom: 1em;
+  }
   h2 {
     position: relative;
     text-align: center;
@@ -319,9 +339,11 @@ main {
     }
     #reviews {
       @include grid;
-      grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+      grid: {
+        template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+        gap: 60px;
+      }
       align-items: start;
-      grid-gap: 60px;
       margin-top: 2.55em;
       > div {
         position: relative;
@@ -330,8 +352,10 @@ main {
           line-height: 1.5em;
           font-size: .95em;
           b {
-            font-family: $serifFont;
-            font-size: .8em;
+            font: {
+              family: $serifFont;
+              size: .8em;
+            }
             color: $black;
           }
         }
@@ -341,10 +365,12 @@ main {
       }
       > div:before {
         content: '\f10d';
-        font-family: "Font Awesome 5 Free";
-        font-weight: 600;
+        font: {
+          family: "Font Awesome 5 Free";
+          weight: 600;
+          size: 1.7em;
+        }
         display: block;
-        font-size: 1.7em;
         color: transparentize($coral, .3);
         position: absolute;
         top: -3px;
@@ -398,19 +424,24 @@ main {
   }
 }
 
+/* footer styles */
 footer {
   background: $black;
   border-top: 2px solid $coral;
   color: $egg;
-  padding-top: 1.3em;
-  padding-bottom: .6em;
+  padding: {
+    top: 1.3em;
+    bottom: .6em;
+  }
   a:hover {
     text-decoration: underline;
   }
   section {
     @include grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-    grid-template-areas: "address call";
+    grid: {
+      template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      template-areas: "address call";
+    }
     align-items: start;
     div:last-child {
       text-align: right;
@@ -475,8 +506,10 @@ footer {
 @media (max-width: 766px) {
   footer {
     section {
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-areas: "call" "address";
+      grid: {
+        template-columns: minmax(0, 1fr);
+        template-areas: "call" "address";
+      }
       .address {
         margin: 0 auto .6em auto;
       }
